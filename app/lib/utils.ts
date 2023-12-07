@@ -35,6 +35,15 @@ export const generateYAxis = (revenue: Revenue[]) => {
   return { yAxisLabels, topLabel };
 };
 
+export function debounce(callback : Function, delay : number) {
+  let timeoutId : undefined | ReturnType<typeof setTimeout>;
+  return (...args : any) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback(...args), delay);
+  };
+}
+
+
 export const generatePagination = (currentPage: number, totalPages: number) => {
   // If the total number of pages is 7 or less,
   // display all pages without any ellipsis.
